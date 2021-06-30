@@ -4,6 +4,7 @@ var fs = [];
 var contract = [];
 var web3 = [];
 var account = "";
+alert("commonJs")
 if (document.location.origin === 'http://localhost:7654') {
     var URL = "http://localhost:7654/";
 } else if(document.location.origin === 'https://musto-marketplace.herokuapp.com/') {
@@ -11,6 +12,8 @@ if (document.location.origin === 'http://localhost:7654') {
 } else {
     var URL = "https://colexion.io/";
 }
+
+alert(URL)
 
 $(document).ready(async function () {
     abi = await fetch('/build/abi network/Nft.json')
@@ -49,6 +52,7 @@ if (ethereumButton) {
                 ethereum.request({ method: 'eth_requestAccounts' }).then(async (result) => {
                     result123 = await web3.eth.getAccounts()
                     account = await web3.eth.getAccounts()
+                    alert(account)
                     await fetch(`${URL}login`, {
                         method: 'POST', // or 'PUT'
                         headers: {
