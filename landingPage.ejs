@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Colexion</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    
+	<script src="assets/js/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./contract/landingPage.js"></script>
+	<!-- <script src="assets/js/cute-alert.js"></script> -->
+	<!-- <script src="assets/js/modal-loading.js"></script> --> 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico"
+        type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="new-assets/fonts/css/font-awesome.min.css" />
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="new-assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="new-assets/css/style.css" />
+    <!-- Responsive Style -->
+    <!-- <link rel="stylesheet" href="new-assets/css/ui.css" /> -->
+    <!-- Responsive Style -->
+    <link rel="stylesheet" href="new-assets/css/responsive.css" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="new-assets/plugins/animate.css-master/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- Light Box -->
+    <link href="new-assets/plugins/lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
+    <!-- Video js --> 
+    <!-- Datapicker --> 
+    <!-- Sliders -->
+    <link rel="stylesheet" type="text/css" href="new-assets/plugins/slick-1.8.0/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="new-assets/plugins/slick-1.8.0/slick/slick-theme.css" /> 
+</head>
+
+<body> 
+    <!-- PRELOADER END -->
+    <!-- HEADER START -->
+    <div class="header-line-wrapper">
+        <header class="header-wrapper fixed-top plr100">
+            <div class="table height-100p">
+                <div class="table-row">
+                    <div class="table-cell valign-middle text-left">
+                        <a href="/" class="logo">
+                            <img data-src="assets/img/logo.png" alt="" class="img-responsive inline-block lozad">
+                        </a>
+                    </div>
+                    <div class="table-cell valign-top text-center vm-sm">
+                        <div class="main-menu">
+                            <span class="toggle_menu">
+                                <span></span> </span>
+                            <ul class="menu clearfix pull-right">
+                                <li class="inline-block">
+                                    <a href="/home">
+                                        Browse </a>
+                                </li>
+                                <li class="inline-block">
+                                    <a href="/launchpad">
+                                        Launchpad </a>
+                                </li>
+                                <li class="inline-block">
+                                    <a href="/home">
+                                        Create </a>
+                                </li>
+                                <!-- <li class="inline-block">
+                                    <a href="contacts.html">
+                                        Vote/DAO </a>
+                                </li>
+                                <li class="inline-block">
+                                    <a href="/">
+                                        Categories </a>
+                                </li> -->
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="table-cell valign-top text-right">
+                        <div class="right-bl">
+                            <!-- <div class="search-wrapper inline-block valign-middle">
+                                <i class="fa fa-search color-white fsize-28" aria-hidden="true"></i>
+                                <form class="search-content" action="#">
+                                    <input type="text" placeholder="Search Keyword...">
+                                    <button class="color-white">
+                                        <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                </form>
+                            </div> -->
+                            <% if( typeof userLogin != "undefined"){ %>
+                                <a id="enableEthereumButton" onclick="enableEthereumButton()" href="javascript:void(0)" class="btn header-btn ml25 color-white hidden-sm hidden-xs" style="font-size: small;">
+                                    <%= userLogin %>
+                                </a>
+                            <% } else { %>
+                                <!-- <a id="enableEthereumButton" onclick="enableEthereumButton()" href="javascript:void(0)" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                                    Join us Now
+                                </a> -->
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- HEADER END -->
+    <!-- SLIDER START -->
+    <section class="main-slider">
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol> 
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+        <img data-src="https://c833z1351.r-cdn.com/banner/nft-1.jpg" class="d-block w-100 lozad" alt="nft-1"> 
+    </div>
+    <div class="item">
+        <img data-src="https://c833z1351.r-cdn.com/banner/nft-2.jpg" class="d-block w-100 lozad" alt="nft-2"> 
+    </div> 
+    <div class="item">
+        <img data-src="https://c833z1351.r-cdn.com/banner/nft-3.jpg" class="d-block w-100 lozad" alt="nft-3"> 
+    </div> 
+  </div> 
+</div> 
+        <div class="sl-social bg-white">
+            <a href="https://www.facebook.com/Colexion-106192891669940" class="social facebook">
+                <i class="fa fa-facebook color-3" aria-hidden="true"></i>
+            </a>
+            <a href="https://twitter.com/colexionNFT" class="social twitter">
+                <i class="fa fa-twitter color-3" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/colexion.io/" class="social google">
+                <i class="fa fa-instagram color-3" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/colexion" class="social google">
+                <i class="fa fa-linkedin color-3" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+    <!-- SLIDER END -->
+    <!-- GAME SECTION START -->
+    <section class="ptb60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 st-tabs tabs ">
+                    <div class="tabs-nav">
+                        <ul class="list-inline nav nav-tabs">
+                            <li class="active col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <a href="#stream-1" data-toggle="tab">
+                                    <div class="tab-title">
+                                        Sports
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <a href="#stream-2" data-toggle="tab">
+                                    <div class="tab-title">
+                                        Entertainment
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <a href="#stream-3" data-toggle="tab">
+                                    <div class="tab-title">
+                                        Art
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <a href="#stream-4" data-toggle="tab">
+                                    <div class="tab-title">
+                                        Lifestyle
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content stream-bl relative" style="background: #181728;">
+                        <div class="tab-pane fade active in text-left clearfix" id="stream-1">
+                            <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="image_bg equal-height lozad"
+                                data-background-image="https://c833z1351.r-cdn.com/game-slide-img-1.png">
+
+                                </div>
+                            </div>
+                            <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
+                                <div class="top-wrapp">
+                                    <div class="fsize-24 fweight-700 font-agency color-white uppercase lheight-28">
+                                        <!-- Sporting industry and fraternity -->
+                                    </div>
+                                    <div class=" lheight-26">
+                                        A new NFT platform for cricket! According to a renowned media agency, Sports NFTs is the next billion dollar evolution, clearing stating that 
+                                        in the years to come, the digital ecosystem of the sport is probably the biggest thing to happen to cricket, perhaps as big as, if not bigger than T20. <br><br>
+                                        
+                                        Collectors and investors, across the globe, own collections of a varied set of memorabilia that have been much appreciated in value over the decades. This ranged from ticket stubs to magazines, to autographs.
+                                    </div>
+                                    <a href="/home?cat=Sports" class="btn gradient color-white plr40 ptb19 mt30">
+                                        Get started now
+                                    </a>
+                                </div> 
+                                
+                            </div>
+                        </div>
+                        <div class="tab-pane fade in competition text-left clearfix" id="stream-2" style="background: #181728;">
+                            <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="image_bg equal-height lozad"
+                                data-background-image="https://c833z1351.r-cdn.com/game-slide-img-2.png">
+
+                                </div>
+                            </div>
+                            <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
+                                <div class="top-wrapp">
+                                    <div class="fsize-24 fweight-700 font-agency color-white uppercase lheight-28">
+                                        <!-- Create Your own channel and Start to Stream games now -->
+                                    </div>
+                                    <div class="mt40 lheight-26">
+                                        At colexion we have the most premium and celebrated community of art makers ,
+                                        creators and traders. The demand of digital ownership of collectibles has
+                                        increased rapidly in last few years.
+                                    </div>
+                                    <a href="/home?cat=Entertainment" class="btn gradient color-white plr40 ptb19 mt30">
+                                        Get started now
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="tab-pane fade in competition text-left clearfix" id="stream-3" style="background: #181728;">
+                            <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="image_bg equal-height lozad"
+                                data-background-image="https://c833z1351.r-cdn.com/game-slide-img-3.png">
+
+                                </div>
+                            </div>
+                            <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
+                                <div class="top-wrapp">
+                                    <div class="fsize-24 fweight-700 font-agency color-white uppercase lheight-28">
+                                        <!-- Create Your own channel and Start to Stream games now -->
+                                    </div>
+                                    <div class="mt40 lheight-26">
+                                        You will find rare , iconic, verified and immutable artworks here. Both creators
+                                        and collectors are super active here and generating good revenues through our
+                                        NFT platform. You can browse and trade from rare artwork, gifs to memes right
+                                        here at one place.
+                                    </div>
+                                    <a href="/home?cat=Art" class="btn gradient color-white plr40 ptb19 mt30">
+                                        Get started now
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade in competition text-left clearfix" id="stream-4" style="background: #181728;">
+                            <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="image_bg equal-height lozad"
+                                data-background-image="https://c833z1351.r-cdn.com/lifestyle.png" style=" background-repeat: no-repeat;height: 420px; background-size: contain !important;">
+
+                                </div>
+                            </div>
+                            <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
+                                <div class="top-wrapp">
+                                    <div class="fsize-24 fweight-700 font-agency color-white uppercase lheight-28">
+                                        <!-- Create Your own channel and Start to Stream games now -->
+                                    </div>
+                                    <div class="mt40 lheight-26">
+                                        Digital artists across the globe are creating NFTs and raking it in. It’s becoming a rather crowded and competitive market. Digital infiltrates fashion among the artists virtually exhibited at our platform, we use NFTs to endorse new digital creators . A modern medium for selling collectables.
+                                    </div>
+                                    <a href="/home?cat=Lifestyle" class="btn gradient color-white plr40 ptb19 mt30">
+                                        Get started now
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="game-section pb85">
+        <div class="container">
+            <div class="row">
+
+
+
+                <div class="title-bl text-center wow fadeIn mt70" data-wow-duration="2s">
+                    <div class="title color-white">
+                        Type of NFT
+                    </div>
+                    <div class="subtitle">
+                        NFT
+                    </div>
+                </div>
+                <div class="tm-tabs tabs mt50">
+
+                    <div class="tabs-nav">
+                        <ul class="list-inline nav nav-tabs tabs-slider">
+                            <li class="active col-lg-4 col-md-4">
+                                <a href="#tab-item-1" data-toggle="tab">
+                                    <div class="img-wrap">
+                                        <img class="lozad" data-src="https://c833z1351.r-cdn.com/Sports.gif" alt="" width="158">
+                                    </div>
+                                    <div class="nav-header-bl mt25">
+                                        <div class="nav-title color-white">
+                                            Sports 
+                                        </div>
+                                        <!-- <div class="date">
+                                            Mar 18-20, 2018
+                                        </div>-->
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-4">
+                                <a href="#tab-item-2" data-toggle="tab">
+                                    <div class="img-wrap">
+                                        <img class="lozad" data-src="https://c833z1351.r-cdn.com/Couple_for-gif.gif" alt="">
+                                    </div>
+                                    <div class="nav-header-bl mt25">
+                                        <div class="nav-title color-white">
+                                            Entertainment
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-4">
+                                <a href="#tab-item-3" data-toggle="tab">
+                                    <div class="img-wrap">
+                                        <img class="lozad" data-src="https://c833z1351.r-cdn.com/Crystel-for-Giff.gif" alt="">
+                                    </div>
+                                    <div class="nav-header-bl mt25">
+                                        <div class="nav-title color-white">
+                                            ART
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- <li class="col-lg-3 col-md-3">
+                                <a href="#tab-item-4" data-toggle="tab">
+                                    <div class="img-wrap">
+                                        <img class="lozad" data-src="https://c833z1351.r-cdn.com/Sports.gif" alt="">
+                                    </div>
+                                    <div class="nav-header-bl mt25">
+                                        <div class="nav-title color-white">
+                                            Sport
+                                        </div>
+                                    </div>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- GAME SECTION END -->
+    <!-- BLOG SECTION START -->
+    <section class="blog-section ptb40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-bl text-center wow fadeIn" data-wow-duration="2s">
+                        <div class="title color-white">
+                            Items Viewed The Most
+                        </div>
+                        <div class="subtitle">
+                            Frash news
+                        </div>
+                    </div>
+                    <div class="title-description mt30 fweight-300 text-center">
+                        You can see the best and most viewed items; from all categories, we have a wide range of items
+                        available on our marketplace.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-wrapper each-element mt90 clearfix">
+            <div class="container">
+                <div class="row">
+                    <% viewedData.forEach( item => { %> 
+                        <div class="item col-lg-4 col-md-4 col-sm-6 col-sm-12 col-sx-12" style="margin-bottom: 50px !important;">
+                            <article class="vertical-item format-video fsize-0 clearfix" style="text-align: center;background: #292845;padding: 20px 0 0;border-radius: 20px 20px 0 0;">
+                                <!-- <video id="vid1" class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 equal-height" controls autoplay poster="new-assets/images/585x550.jpg" data-setup='{ "techOrder": ["html5"], "sources": [{ "type": "video/mp4", "src": "new-assets/images/video1.mp4"}], "autoplay": false }'>
+                                </video> -->
+                                <img data-src="https://ipfs.infura.io/ipfs/<%= item.URL %>" class="lozad" alt="" height="200px">
+                            </article>
+                            <a href="/detail?id=<%= item._id %>" class="item-wrap">
+                                <div class="item-info equal-height">
+    
+                                    <div class="item-title" data-trim="40"> <%= item.Title %></div>
+                                    <div class="item-text mt5 lheight-26" data-trim="130">
+                                        Only for <%= item.Token_Price %> WEI </div>
+                                </div>
+                                <div class="author-comment table text-center">
+                                    <a href="/detail?id=<%= item._id %>" class="btn border-btn plr50 ptb19 color-white">BUY NOW</a>
+                                </div>
+                            </a>
+                        </div>
+                    <% }) %>
+                    <!-- <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
+                        <article class="vertical-item format-video fsize-0 clearfix">
+                            <video id="vid1"
+                                class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 equal-height" controls
+                                autoplay poster="new-assets/images/video2.jpg"
+                                data-setup='{ "techOrder": ["html5"], "sources": [{ "type": "video/mp4", "src": "new-assets/images/video2.mp4"}], "autoplay": false }'>
+                            </video>
+                        </article>
+                        <a href="  " class="item-wrap">
+
+                            <div class="item-info equal-height">
+
+                                <div class="item-title mt20" data-trim="40">Best 3D Games With Great Features</div>
+                                <div class="item-text mt5 lheight-26" data-trim="130">
+                                    Highest bid 2.5 WETH </div>
+                            </div>
+                            <div class="author-comment table text-center">
+                                <a href="#" class="btn border-btn plr50 ptb19 color-white">PLACE BID</a>
+                            </div>
+                        </a>
+                    </div> -->
+                    <!-- <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
+                        <article class="vertical-item format-video fsize-0 clearfix">
+                            <video id="vid1"
+                                class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 equal-height" controls
+                                autoplay poster="new-assets/images/video3.jpg"
+                                data-setup='{ "techOrder": ["html5"], "sources": [{ "type": "video/mp4", "src": "new-assets/images/video3.mp4"}], "autoplay": false }'>
+                            </video>
+                        </article>
+                        <a href="  " class="item-wrap">
+
+                            <div class="item-info equal-height">
+
+                                <div class="item-title mt20" data-trim="40">Best 3D Games With Great Features</div>
+                                <div class="item-text mt5 lheight-26" data-trim="130">
+                                    Highest bid 2.5 WETH </div>
+                            </div>
+                            <div class="author-comment table text-center">
+                                <a href="#" class="btn border-btn plr50 ptb19 color-white">PLACE BID</a>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+              
+            </div>
+        </div>
+    </section>
+    <!-- BLOG SECTION END -->
+    <!-- TESTIMONIAL SECTION START -->
+
+    <!-- TESTIMONIAL SECTION END -->
+    <!-- GALLERY SECTION START -->
+
+
+
+    
+
+    <!-- <section class="gallery main-gallery ptb150">
+        <div class="container">
+            <div class="row">
+                <div class="title-bl text-center wow fadeIn" data-wow-duration="2s">
+                    <div class="title color-white">
+                        Best Selling Items
+                    </div>
+                    <div class="subtitle">
+                        All New Images
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="grid-wrapper mt70">
+                    <div class="filter_container text-center">
+                        <div class="filter-item active" data-filter="all">
+                            All
+                        </div>
+                        <div class="filter-item" data-filter="origin">
+                            Origin
+                        </div>
+                        <div class="filter-item" data-filter="playstation-4">
+                            Playstation 4
+                        </div>
+                        <div class="filter-item" data-filter="steam">
+                            Steam
+                        </div>
+                        <div class="filter-item" data-filter="uplay">
+                            Uplay
+                        </div>
+                        <div class="filter-item" data-filter="xbox-one">
+                            Xbox one
+                        </div>
+                    </div>
+                    <div class="item_container relative mt40">
+                        <div class="item origin col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-1.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item playstation-4 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-2.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item uplay col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-4.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item steam xbox-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-3.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item steam xbox-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-5.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item steam xbox-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-6.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item steam xbox-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-7.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item steam xbox-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="item-content">
+                                <div class="image-bl">
+                                    <img src="new-assets/images/gallery/gallery-8.jpg" alt="">
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-bl text-center">
+                                        <a href="#" data-trim="40"
+                                            class="item-title color-white fsize-24 fweight-700 font-agency uppercase">
+                                            Using Banner Stands To Increase Trade </a>
+                                        <div class="text-center mt30">
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-search" aria-hidden="true"></i> </a>
+                                            <a href="#" class="item-btn inline-block valign-middle">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center mt50">
+                        <a href="#" class="btn border-btn plr50 ptb19 color-white">Discover more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+
+    <!-- GALLERY SECTION END -->
+    <!-- STREAMS SECTION START -->
+
+    <!-- STREAMS SECTION END -->
+    <!-- PRICE SECTION START -->
+    <!-- <section class="price ptb50">
+        <div class="container">
+            <div class="row">
+                <div class="title-bl text-center wow fadeIn" data-wow-duration="2s">
+                    <div class="title color-white">
+                        Ecosystem
+                    </div>
+                    <div class="subtitle">
+                        Smart Payments & DeFi
+                    </div>
+                </div>
+                <div class="mt90">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-duration="2s">
+                        <div class="item standart text-center">
+                            <div class="ptb30 fsize-24 fweight-700 font-agency uppercase color-white">
+                                Blockchain Ecosystem
+                            </div>
+                            <!--<div class="current-bl color-white pt25 pb20">
+                                <div class="font-agency fweight-700 lheight-30">
+                                    <span class="fsize-24">$</span>
+                                    <span class="fsize-48">39</span>
+                                    <span class="fsize-24">99</span>
+                                </div>
+                                <div class="fsize-14 uppercase fweight-700">
+                                    Per mouth
+                                </div>
+                            </div>-->
+                            <!-- <div class="price-content equal-height">
+                                <div class="item-list">Pork Ground Found Biltong</div>
+                                <div class="item-list">Capicola Sausage Beef Ribs</div>
+                                <div class="item-list">Pork Doner Frankfurter</div>
+                            </div>
+                            <div class="text-center pb60">
+                                <a href="#" class="btn border-btn color-white plr50 ptb19">View More</a>
+                            </div> -->
+                        </div>
+                    </div>
+
+<!--                     
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeInDown p30" data-wow-duration="1s">
+                        <div class="item gold text-center">
+                            <div class="ptb30 fsize-24 fweight-700 font-agency uppercase color-white">
+                                MarketPlace Maker
+                            </div>
+
+                            <div class="price-content equal-height">
+                                <div class="item-list">Doner Boudin Rump Picanha</div>
+                                <div class="item-list">Leberkas Kevin Drumstick</div>
+                                <div class="item-list">Beef Mignon Bresaola</div>
+                            </div>
+                            <div class="text-center pb60 mt30">
+                                <a href="#" class="btn border-btn color-white plr50 ptb19 ">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeInRight  p30" data-wow-duration="2s">
+                        <div class="item platinum text-center">
+                            <div class="ptb30 fsize-24 fweight-700 font-agency uppercase color-white">
+                                Exchange Maker
+                            </div>
+
+                            <div class="price-content equal-height">
+                                <div class="item-list">Bresaola Shoulder Venison </div>
+                                <div class="item-list">Frankfurter Cow Ribeye </div>
+                                <div class="item-list">Cupim Drumstick Tail Pancetta</div>
+                            </div>
+                            <div class="text-center pb60 mt30">
+                                <a href="#" class="btn border-btn color-white plr50 ptb19">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeInRight  p30" data-wow-duration="2s">
+                        <div class="item platinum text-center">
+                            <div class="ptb30 fsize-24 fweight-700 font-agency uppercase color-white">
+                                Token Creator
+                            </div>
+
+                            <div class="price-content equal-height">
+                                <div class="item-list">Bresaola Shoulder Venison </div>
+                                <div class="item-list">Frankfurter Cow Ribeye </div>
+                                <div class="item-list">Cupim Drumstick Tail Pancetta</div>
+                            </div>
+                            <div class="text-center pb60 mt30">
+                                <a href="#" class="btn border-btn color-white plr50 ptb19">View More</a>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </div>
+        </div>
+    </section>  
+
+    <!-- PRICE SECTION END -->
+    <!-- FAQ SECTION START -->
+
+    <!-- FAQ SECTION END -->
+    <!-- REGISTER SECTION START -->
+
+    <!-- REGISTER SECTION END -->
+    <!-- FOOTER START -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb10">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <a href="/">
+                        <img data-src="assets/img/logo-b.png" class="lozad" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                    <ul class="footer-menu">
+                        <li class="active">
+                            <a href="/">
+                                Homepage
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="/home">
+                                Browse
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Contact">
+                                Contacts
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="mt20">
+                        A digital economy for luxury
+                        & aspirational communities
+                        colexion.io
+                    </div>
+                    <div class="social-content mt10 mb30">
+                        <div class="social-list">
+                            <a target="_blank" href="https://www.facebook.com/Colexion-106192891669940">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a href="https://twitter.com/colexionNFT">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a target="_blank" href="https://www.instagram.com/colexion.io/">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a target="_blank" href="https://www.linkedin.com/company/colexion">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="copyright ptb30 col-lg-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        © Copyright 2021
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+                        All Rights Reserved  <b class="text-white"> Bitlife OU </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+    <a href="#" id="toTop" class="color-white">
+        <i class="fa fa-angle-up fsize-14" aria-hidden="true"></i>
+    </a>
+    <!-- Scripts -->
+
+
+    <script src="new-assets/js/jquery-3.3.1.min.js"></script>
+    <script src="new-assets/js/bootstrap.min.js"></script>
+    <script src="new-assets/plugins/slick-1.8.0/slick/slick.min.js"></script>
+    <script src="new-assets/plugins/flex-menu/flexmenu.min.js"></script>
+    <script src="new-assets/plugins/jquery-match-height-master/dist/jquery.matchHeight.js"></script> 
+    <script src="new-assets/js/jquery.inview.min.js"></script> 
+    <script src="new-assets/plugins/lightbox2-master/dist/js/lightbox.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="new-assets/js/moment.min.js"></script>  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>$('.carousel').carousel();
+    const observer = lozad();
+        observer.observe();</script>
+</body>
+
+
+</html>

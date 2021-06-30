@@ -1,0 +1,348 @@
+
+
+
+<%- include('_header.ejs') %>
+
+	<div class="container">
+		<div class="row row--grid">
+			<!-- breadcrumb -->
+			<!-- <div class="col-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/home">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Items</li>
+					</ol>
+				</nav>
+			</div> -->
+			<!-- end breadcrumb -->
+
+			<!-- title -->
+			<div class="col-12 mb-0 mt-3">
+				<h1 class=" fs-5 mb-0 headTitle">
+					<%= data.Title %>
+				</h1>
+			</div>
+		</div>
+		<!-- end title -->
+
+		<div class="row">
+			<!-- content -->
+			<div class="col-12 col-xl-8">
+				<div class="asset__item">
+					<a class="asset__img" href="#">
+						<% if(typeof data.nftType == "undefined" || data.nftType=='image'){ %>
+						<img class="watermark" id="NFTimg" src="https://ipfs.infura.io/ipfs/<%= data.URL %>" alt="">
+						<% }  %>
+						<% if(typeof data.nftType != "undefined" && data.nftType=='video'){ %>
+							<video style="max-height: 500px;" poster="/<%= data.thumb %>"  controls autoplay  muted loop>
+								<source  src="/<%= data.File %>" type="video/mp4">
+								Your browser does not support the video element. Kindly update it to latest version.
+							</video >								 
+						<% }  %>
+					</a>
+					<!-- share -->
+					<div class="share share--asset">
+						<a href="#" class="share__link share__link--fb"> <i class="fa fa-facebook me-1"></i> <span>
+								share</span></a>
+						<a href="#" class="share__link share__link--tw"><i class="fa fa-twitter me-1"></i> <span>
+								tweet</span></a>
+						<a href="#" class="share__link share__link--link"> <i class="fa fa-link me-1"></i> <span> copy
+								link</span></a>
+					</div>
+					<!-- end share -->
+				</div>
+			</div>
+			<!-- end content -->
+
+			<!-- sidebar -->
+			<div class="col-12 col-xl-4">
+				<div class="asset__info">
+					<div class="asset__desc">
+						<h2>Descriptions</h2>
+						<p>
+							<%= data.Description %>
+						</p>
+					</div>
+					
+					<% if(typeof data.Creator != "undefined"){ %>
+						<div class="asset__desc mt-4">
+							<h2>Creator</h2>
+							<p>
+								<%= data.Creator.owner %>
+							</p>
+						</div>
+					<% } %>
+
+					<% if(typeof data.externalLink != "undefined"){ %>
+						<div class="asset__desc mt-4">
+							<h2>External Link</h2>
+							<p>
+								<%= data.externalLink %>
+							</p>
+						</div>
+					<% } %>
+
+					<ul class="asset__authors">
+						<li>
+							<span>Owner</span>
+							<div class="asset__author asset__author--verified">
+								<% if( userData==null || typeof userData.user_DP=="undefined" ){ %>
+									<img src="assets/img/avatars/avatar5.jpg" alt="guest_DP">
+									<% } else { %>
+										<img src="<%= userData.user_DP %>" class="img-fluid" alt="user_DP"
+											style="width: 100%; max-height: 170px;">
+										<% } %>
+											<a href="#">@
+												<span class="usernamefield">
+													<%= userData==null || typeof userData.user_id=='undefined'
+														? 'user id' : userData.user_id %>
+												</span>
+											</a>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="nav nav-tabs  asset__tabs" id="myTab" role="tablist">
+						<li class="nav-item" role="presentation">
+							<a class="nav-link active" id="nav-tab-bids" data-bs-toggle="tab" data-bs-target="#tab-1"
+								role="tab" aria-controls="home" aria-selected="true">History</a>
+						</li>
+						<% if(data.Status=="Auctioned" && data.AuctionData.highestBidder != "0x0000000000000000000000000000000000000000") { %>
+							<li class="nav-item" role="presentation">
+								<a class="nav-link" id="nav-tab-history" data-bs-toggle="tab" data-bs-target="#tab-2"
+									role="tab" aria-controls="profile" aria-selected="false">Bids</a>
+							</li>
+							<% } %>
+					</ul>
+
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="tab-1" role="tabpanel"
+							aria-labelledby="nav-tab-bids">
+							<div class="asset__actions">
+								<% data.Owner_History.forEach( item=> { %>
+									<div class="asset__action asset__action--verified">
+										<img src="<%= typeof item.user_DP != 'undefined' ? item.user_DP : 'assets/img/avatars/avatar5.jpg' %>"
+											alt="">
+										<p>Owned by <b>
+												<%= item.user_id %>
+											</b> <br>
+											<%= new Date(item.timestamp).toISOString().slice(0, 19).replace('T', ' ' )
+												%>
+										</p>
+									</div>
+									<% }) %>
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="nav-tab-history">
+							<% if(data.Status=="Auctioned" ) { %>
+								<div class="asset__actions asset__actions--scroll" id="asset__actions--scroll"
+									data-scrollbar="true" tabindex="-1" style="overflow: hidden; outline: none;">
+									<div class="scroll-content">
+										<div class="asset__action asset__action--verified">
+											<% if( typeof highestBidderData == "undefined" ){ %>
+												<h1 style="color: cornsilk;">Working</h1>
+												<% if( 'user_DP' in highestBidderData == false ){ %>
+													<img src="assets/img/avatars/avatar5.jpg" alt="guest_DP">
+												<% } else { %>
+													<img src="<%= highestBidderData.user_DP %>" class="img-fluid" alt="user_DP"
+														style="width: 100%; max-height: 170px;">
+												<% } %>
+											<% } %>
+											<% if(typeof highestBidderData != "undefined") { %>
+												<p>Bid placed for <b><%= data.AuctionData.highestBid%> &nbsp; <img src="/assets/img/6f8e2979d428180222796ff4a33ab929.svg" style="width: 15px !important; display: inline;" alt="Eth-logo">  </b> <br>by <a href="javascript:void(0)">@ <%= data.AuctionData.highestBidder %></a></p>
+											<% } %>
+										</div>
+									</div>
+									<div class="scrollbar-track scrollbar-track-x show" style="display: none;">
+										<div class="scrollbar-thumb scrollbar-thumb-x"
+											style="width: 360px; transform: translate3d(0px, 0px, 0px);"></div>
+									</div>
+									<div class="scrollbar-track scrollbar-track-y show" style="display: block;">
+										<div class="scrollbar-thumb scrollbar-thumb-y"
+											style="height: 101.407px; transform: translate3d(0px, 0px, 0px);"></div>
+									</div>
+								</div>
+								<% } %>
+						</div>
+					</div>
+					<!-- end tabs -->
+
+					<% if(data.Status=="Auctioned" ) { %>
+						<div class="asset__wrap row">
+							<div class="asset__timer col">
+								<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+										<path
+											d="M18.3,8.59l.91-.9a1,1,0,0,0-1.42-1.42l-.9.91a8,8,0,0,0-9.79,0l-.91-.92A1,1,0,0,0,4.77,7.69l.92.91A7.92,7.92,0,0,0,4,13.5,8,8,0,1,0,18.3,8.59ZM12,19.5a6,6,0,1,1,6-6A6,6,0,0,1,12,19.5Zm-2-15h4a1,1,0,0,0,0-2H10a1,1,0,0,0,0,2Zm3,6a1,1,0,0,0-2,0v1.89a1.5,1.5,0,1,0,2,0Z">
+										</path>
+									</svg> Auction ends in</span>
+								<div class="asset__clock"> <strong id="remainingTime"></strong> <span id="mint">MINUTES</span> </div>
+							</div>
+							<script>
+								millis('<%= data.AuctionData.auction_start %>', '<%= data.AuctionData.auction_end %>')
+								setInterval(() => {
+									millis('<%= data.AuctionData.auction_start %>', '<%= data.AuctionData.auction_end %>')
+								}, 30000);
+								function millis(startTime, endTime) {
+									remainingTimme = ( (parseInt(endTime) * 60000) + parseInt(startTime	) ) - Date.now();
+									if (remainingTimme >= 0) {
+										var minutes = Math.floor(remainingTimme / 60000);
+										// console.log(" Remaining Time: " + minutes);
+										document.getElementById("remainingTime").innerText = minutes;
+									} else {
+										document.getElementById("remainingTime").innerText = "Ended";
+										document.getElementById("mint").innerText = "";
+										var minutes = Math.floor(remainingTimme / 60000);
+										// console.log(" Remaining Time: " + minutes);
+									}	
+								}
+							</script>
+
+							
+							<div class="asset__price col">
+								<span>Min Bid</span>
+								<span><%= data.AuctionData.minimunBid %> &nbsp; <img src="/assets/img/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo"> </span>
+							</div>
+							<div class="asset__price col">
+								<span>Max Bid</span>
+								<span><%= data.AuctionData.maximunBid %> &nbsp; <img src="/assets/img/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo"> </span>
+							</div>
+						</div>
+						<% } %>
+
+							<!-- actions -->
+							<% if(data.Status !="Auctioned" ) { %>
+
+								<% if(data.Status=="Instant_buy" ){ %>
+									<div class="asset__btns">
+										<% if (typeof userLogin !="undefined" ){ %>
+											<a href="#modal-bid"
+												onclick="Token_Purchase('<%= data.Token_ID %>','<%= data.Token_Price %>')"
+												class="asset__btn asset__btn--full asset__btn--clr open-modal">Buy Now
+												on&nbsp; 
+												<span id="tokenPriceContract" style="font-weight: 600;">
+													<%= data.Token_Price %>
+												</span> &nbsp; <img src="/assets/img/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo">
+											</a>
+
+											<div class="row" id="Error_Purchase" style="display: none;">
+												<div class="alert alert-danger" role="alert">
+													<center>
+														<strong id="Error_Purchase_Text"> </strong>
+													</center>
+												</div>
+											</div>
+
+											<div class="row" id="Success_Purchase" style="display: none;">
+												<div class="alert alert-success" role="alert">
+													<center>
+														<strong id="Success_Purchase_Text"> </strong>
+													</center>
+												</div>
+											</div>
+
+
+											<% } else { %>
+												<a href="javascript:void(0)"
+													class="asset__btn asset__btn--full asset__btn--clr open-modal">Needs Login for
+													purchase at&nbsp;
+													<span id="tokenPriceFromContract" style="font-weight: 600;">
+														<%= data.Token_Price %>
+													</span>&nbsp; <img src="/assets/img/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo">
+												</a>
+												<% } %>
+									</div>
+									<% } else {%>
+										<div class="asset__btns">
+											<button disabled class="asset__btn asset__btn--full asset__btn--clr ">Not For
+												Sale</button>
+										</div>
+									<% } %>
+									<% } else {%>
+										<% if(typeof userLogin !="undefined" ) { %>
+										<div class="asset__btns">
+											<input type="number" class="form-control" id="placeBid" placeholder="Place a Bid">
+											<button class="asset__btn asset__btn--full asset__btn--clr" onclick="PlaceBid('<%= data.Token_ID %>')" >On Auction Place Bid</button>
+										</div>
+										<div class="asset__btns">
+											<button class="asset__btn asset__btn--full asset__btn--clr" onclick="bidsInfo('<%= data.Token_ID %>')" >Get My bids info of this Token</button>
+											<p class="form-control" style="display: none;" id="myBids"> </p>
+										</div>
+										<% } else { %>
+											<div class="asset__btns">
+												<button class="asset__btn asset__btn--full asset__btn--clr">On Auction, Login to continue</button>
+											</div>
+											<% } %> 
+									<% } %>
+										<!-- end actions -->
+				</div>
+			</div>
+			<!-- end sidebar -->
+		</div>
+
+		<!-- explore -->
+		<% if( relatedData.length> 0 ){ %>
+			<section class="row row--grid mt-4">
+				<!-- title -->
+				<div class="col-12">
+					<div class="main__title main__title--border-top">
+						<h2 class="text-light fs-4">Other author assets</h2>
+					</div>
+				</div>
+				<!-- end title -->
+				<div class="col-md-12 mb-5">
+					<div class="main__carousel-wrap">
+						<div class="main__carousel main__carousel--explore  owl-carousel">
+							<% relatedData.forEach( (item, i)=> { %> 
+
+								<div class="card">
+									<a href="/detail?id=<%= item._id %>" class="card__cover">
+										<img src="/<%= data.thumb %>" alt="<%= i %>"> 
+									</a>
+										<div class="nft-detail-bottom position-absolute bottom-0 end-0 w-100 p-3 nft-ct-border">
+											<h3 class="card__title text-capitalize fst-italic mb-0 "><a class="fw-light fs-6" href="/detail?id=<%= item._id %>">
+													<%= item.Title %>
+												</a></h3>
+											<div class="card__info mt-0 pt-0">
+												<div class="card__price"> 
+													<span>
+														<%= item.Token_Price %> ETH
+													</span>
+												</div>
+												<a href="/detail?id=<%= item._id %>" class="btn btn-outline-light btn-sm">
+													<span> <i class="fa fa-info-circle"></i> </span>
+												</a>
+										</div>
+									</div>
+								</div>
+
+								<% }) %>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end explore -->
+			<% } %>
+	</div>
+
+	
+	
+	<%- include('_footer.ejs') %>
+
+	<script src="./contract/details.js"></script>  
+	
+	<script>
+		document.querySelectorAll(".usernamefield").forEach(element => {
+			if (element.innerText.length > 15) {
+				element.innerText = element.innerText.slice(0, 15) + ".....";
+			}
+		});
+	</script>
+
+
+
+
+
+</body>
+
+</html>

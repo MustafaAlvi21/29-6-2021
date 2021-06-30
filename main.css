@@ -1,0 +1,123 @@
+body {
+  background: #1e1d32;
+}
+
+.bg-stax {
+  background: #7c69e3 !important;
+}
+.text-stax {
+  color: #7c69e3 !important;
+}
+.border-stax {
+  border-color: #7c69e3 !important;
+}
+.btn-stax {
+  color: rgb(242, 242, 242) !important;
+  background: #7c69e3 !important;
+}
+.btn-stax:hover {
+  color: #f2f2f2 !important;
+  background: #729103 !important;
+}
+
+.btn-outline-stax {
+  color: #7c69e3 !important;
+  border: 1px solid #7c69e3 !important;
+}
+
+.btn-outline-stax:hover {
+  color: #f2f2f2 !important;
+  background: #729103 !important;
+}
+
+.btn-primary {
+  color: #f2f2f2 !important;
+  background: transparent;
+  border-color: #ffffff !important;
+}
+.btn-primary:hover {
+  background: transparent;
+  border-color: #9999b4 !important;
+}
+
+.card {
+  border-radius: 0.6em !important;
+}
+
+.border-light {
+  border-color: rgba(61, 61, 61, 1);
+}
+
+.bg-dark {
+  background: #1e1d32 !important;
+}
+
+.card,
+.bg-theme {
+  background: #292845 !important;
+}
+
+.market-item-img {
+  max-height: 300px;
+}
+.market-item-img img {
+  /* height: 100%;
+  width: 238px; */
+  -o-object-fit: contain;
+}
+
+.border-outline-stax {
+  /* color: #f2f2f2 !important;
+  border: 1px solid #fcfff1 !important;
+  padding: 5%;
+  border-radius: 30px; */
+}
+.border-outline-stax ul {
+  list-style: none;
+  padding: 0px 0 0 10px;
+}
+
+.filter-box {
+  background: #292845 !important;
+  padding: 5%;
+}
+
+.form-control {
+  background-color: #282d46;
+  border: 1px solid #646a6f;
+  color: #ddd;
+}
+.nft-img {
+  max-height: 180px;
+  width: auto;
+  max-width: 100%;
+}
+.nft-icon {
+  max-width: 12px;
+}
+.page-link {
+  color: #fff;
+  background-color: #1e1d32;
+  border: 1px solid #494861;
+}
+.page-link:hover {
+  color: #fff;
+  background-color: #595874;
+  border: 1px solid #595874;
+}
+.nft-ct-border {
+  border: 2px dotted #1e1d32 !important;
+}
+#itemsForSale .card {
+  height: 280px;
+}
+#itemsForSale .card:hover {
+  border: 4px #fff !important;
+}
+
+.owl-carousel .card {
+  height: 300px;
+}
+.owl-carousel .nft-detail-bottom {
+  background: #292845 !important;
+}

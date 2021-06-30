@@ -1,0 +1,174 @@
+
+
+<%- include('_header.ejs') %>
+ 
+	<div class="contaioner mt-5"></div>
+    
+	<div class="container mt-5 pt-5 mb-5">
+		<div class="row row--grid">
+			<div class="col-12 col-xl-3">
+				<div class="author author--page">
+					<div class="author__meta">
+						<a href="/detail?id=<%= data._id %>" class="author__avatar author__avatar--verified">
+							<% if( typeof data.File != "undefined" ){ %>
+								<img src="<%= data.File %>" alt="guest_DP">
+								
+								<% } else { %>
+									<img src="assets/img/avatars/avatar5.jpg" alt="guest_DP">
+									<!-- <img src="" class="img-fluid img-thumbnail" alt="user_DP" style="width: 100%; max-height: 170px;"> -->
+							<% } %>
+						</a>
+						<br>
+						<!-- <h1 class="author__name"><a href="#"><%= data.Title %></a></h1> -->
+						<!-- <h2 class="author__nickname">
+							<a href="#">@ 
+								<span class="usernamefield">
+									<%= typeof userData.user_id == 'undefined' ? '' : userData.user_id %>
+								</span>
+							</a>
+						</h2> -->
+						<!-- <p class="author__text">All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p> -->
+						<div class="author__code">
+							<input type="text" value='<%= data.Owner.owner %>' id="author-code">
+							<button type="button" id="copy-button">
+								<span>Copied</span>
+								 <i class="fa fa-copy"></i>
+							</button>
+						</div>
+						  
+						<!-- <a href="#" class="author__link">  <i class="fa fa-link me-1"></i>  https://authert_profile.url</a> -->
+						<div class="author__social" style="color: white;">
+							<% if( typeof data.Token_ID != 'undefined' ){ %>
+								Token ID: <%= data.Token_ID %>
+							<% } %>
+						</div> 
+						<div class="author__social" style="color: white;">
+							<% if( typeof data.Status != 'undefined' ){ %>
+								<%= data.Status %>
+							<% } %>
+						</div> 
+						<div class="author__social mt-2" style="color: white;">
+							<h6>Description</h6>
+							<% if( typeof data.Description != 'undefined' ){ %>
+								<%= data.Description %>
+							<% } %>
+						</div> 
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-xl-9">
+						
+				<!-- content tabs -->
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+							<div class="row row--grid">
+								<div class="col-12">
+									<div class="row">
+										<div class="col-12">
+											<h3 class="sign__title">Update Token Status</h3>
+										</div>
+
+										<div class="col-8">
+											<div class="form-floating mb-3">
+												<select class="form-control" id="token_status185" onchange="getStatus7845()">
+													<% if(data.Status == "Instant_buy") { %>
+														<option value="Instant_buy" selected>On Sale</option>
+														<option value="Not for Sale">Not for Sale</option>
+													<% } %>
+													<% if(data.Status == "Not for Sale") { %>
+														<option value="Instant_buy">On Sale</option>
+														<option value="Not for Sale" selected>Not for Sale</option>
+														<option value="Auctioned">Auctioned</option>
+													<% } %>
+													<% if(data.Status == "Auctioned") { %>
+														<option value="Instant_buy">On Sale</option>
+														<option value="Not for Sale">Not for Sale</option>
+														<option value="Auctioned" selectedx>Auctioned</option>
+													<% } %>
+												</select>
+												<label for="floatinguserid">Status</label>
+											</div> 
+											<div class="form-floating mb-3" style="display: none" id="Auction_Duration_1">
+												<!-- <span style="color: gainsboro;">Auction Duration</span> -->
+												<input id="Auction_Duration_2" type="text" class="form-control" placeholder="Auction Duration">
+												<label for="floatinguserid">Auction Duration <small class="text-info">Enter time in minutes</small> </label>
+											</div> 
+											<div class="form-floating mb-3" style="display: none" id="Maximum_Bid_1">
+												<input id="Maximum_Bid_2" type="number" class="form-control">
+												<label for="floatinguserid">Maximum Bid in ETH</label>
+											</div>
+											<div class="form-floating mb-3" style="display: none" id="Minimum_Bid_1">
+												<input id="Minimum_Bid_2" type="number" onchange="as100()" class="form-control">
+												<label for="floatinguserid">Minimum Bid in ETH</label>
+											</div>
+										</div>
+										<div class="col-2">
+											<button class="sign__btn" type="button" onclick="updateStatus('<%= data.Token_ID %>')" >Update</button>
+										</div>
+									</div>
+								</div>
+
+								<% if(data.Status != "Auctioned") { %>
+									<div class="col-12">
+										<div class="row">
+											<div class="col-12">
+												<h3 class="sign__title">Update Token Price <small class="text-info">Only works when token is not in auction.</small></h3>
+											</div>
+											<div class="col-8">
+												<div class="form-floating mb-3">
+													<input type="number" class="form-control" name="user_id" id="TokenAmount8789" value="<%= typeof data.Token_Price == 'undefined' ? '' : data.Token_Price %>" placeholder="user-id">
+													<label for="floatinguserid">Price</label>
+												</div> 
+											</div>
+
+											<div class="col-2">
+												<button class="sign__btn" type="button" onclick="updatePrice('<%= data.Token_ID %>')" >Update</button>
+											</div>
+										</div>
+									</div>
+								<% } %>
+							</div>
+						</div>
+
+
+				</div>
+				<!-- end content tabs -->
+			</div>
+		</div>	
+	</div>
+        
+	
+	<%- include('_footer.ejs') %>
+	<script src="./contract/details.js"></script> 
+
+	<script>
+		
+		function copy() {
+			var copyText = document.querySelector("#author-code");
+			copyText.select();
+			document.execCommand("copy");
+		}
+		document.querySelector("#copy-button").addEventListener("click", copy);
+
+		document.querySelectorAll(".usernamefield").forEach(element => {
+			if(element.innerText.length > 15){
+				element.innerText = element.innerText.slice(0, 15)+"....."; 
+			}
+		});
+
+		function as100() {
+			Maximum_Bid_2 = document.getElementById("Maximum_Bid_2").value;
+			Minimum_Bid_2 = document.getElementById("Minimum_Bid_2").value;
+
+			if(Maximum_Bid_2 > Minimum_Bid_2){
+				document.querySelector(".sign__btn").disabled = false;
+			} else{
+				alert("Minimum bid can not be higher than maximmum bid.")
+				document.querySelector(".sign__btn").disabled = true;
+			}
+		}
+	</script>
+
+</body>
+</html>

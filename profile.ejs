@@ -1,0 +1,371 @@
+
+
+<%- include('_header.ejs') %>
+ 
+	<div class="contaioner mt-5"></div>
+    
+	<% if (error.length > 0 ) { %>
+		<div class="row" id="hide_alert">
+		  <div class="alert alert-danger mx-auto" style="max-width: 800px;" role="alert">
+			<center>
+			  <strong> <%= error %> </strong>   
+			</center> 
+		  </div>
+		</div>
+		<script>
+		  setTimeout(() => {
+			document.getElementById("hide_alert").style.display = "none";
+		  }, 4000);
+		</script>          
+	<% } %>
+
+	<div class="container mt-5 pt-5 mb-5">
+		<div class="row row--grid">
+			<div class="col-12 col-xl-3">
+				<div class="author author--page">
+					<div class="author__meta">
+						<a href="#" class="author__avatar author__avatar--verified">
+							<% if( typeof userData.user_DP == "undefined" ){ %>
+								<img src="assets/img/avatars/avatar5.jpg" alt="guest_DP">
+							<% } else { %>
+								<img src="<%= userData.user_DP %>" class="img-fluid img-thumbnail" alt="user_DP" style="width: 100%; max-height: 170px;">
+							<% } %>
+						</a>
+						<h1 class="author__name"><a href="#">Author name</a></h1>
+						<h2 class="author__nickname">
+							<a href="#">@ 
+								<span class="usernamefield">
+									<%= typeof userData.user_id == 'undefined' ? '' : userData.user_id %>
+								</span>
+							</a>
+						</h2>
+						<!-- <p class="author__text">All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p> -->
+						<div class="author__code">
+							<input type="text" value='<%= typeof userData == "undefined" ? "User Wallet" : userData.user_wallet %>' id="author-code">
+							<button type="button" id="copy-button">
+								<span>Copied</span>
+								 <i class="fa fa-copy"></i>
+							</button>
+						</div>
+						  
+						<!-- <a href="#" class="author__link">  <i class="fa fa-link me-1"></i>  https://authert_profile.url</a> -->
+						<div class="author__social">
+							<% if( typeof userData.Facebook != 'undefined' ){ %>
+								<a href="<%= userData.Facebook %>" target="_blank"> <i class="fa fa-facebook text-light"></i> </a>
+							<% } %>
+
+							<% if( typeof userData.Twitter != 'undefined' ){ %>
+								<a href="<%= userData.Twitter %>" target="_blank"> <i class="fa fa-twitter text-light"></i> </a>
+							<% } %>
+							
+							<% if( typeof userData.Telegram != 'undefined' ){ %>
+								<a href="<%= userData.Telegram %>" target="_blank"> <i class="fa fa-telegram text-light"></i> </a> 
+							<% } %>
+							
+							<% if( typeof userData.Youtube != 'undefined' ){ %>
+								<a href="<%= userData.Youtube %>" target="_blank"> <i class="fa fa-youtube text-light"></i> </a> 
+							<% } %>
+							
+
+						</div> 
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-xl-9">
+				<div class="profile m-0">
+					<!-- tabs nav -->
+					<ul class="nav nav-tabs  profile__tabs" id="myTab" role="tablist">
+						<li class="nav-item" role="presentation">
+						  <a class="nav-link active" id="nav-tab-items" data-bs-toggle="tab" data-bs-target="#tab-1"   role="tab" aria-controls="items" aria-selected="true">My NFTs</a>
+						</li>
+						<li class="nav-item" role="presentation">
+						  <a class="nav-link" id="nav-tab-activity" data-bs-toggle="tab" data-bs-target="#tab-2"   role="tab" aria-controls="activity" aria-selected="false"> Activity</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" id="nav-tab-settings" data-bs-toggle="tab" data-bs-target="#tab-3"   role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+						  </li>
+
+					</ul> 
+ 
+					<!-- end tabs nav -->
+				</div>
+
+				<!-- content tabs -->
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+						<div class="row row--grid">
+							<!-- <h1 style="color: wheat;">------------------------------------------------------------</h1> -->
+						<% data.forEach((item, i) => { %>
+						
+							<div class="col-12 col-sm-6 col-lg-4">
+								<!-- card -->
+								<div class="card">
+									<a href="/detail?id=<%= item._id %>" class="card__cover">
+										<img src="<%= item.File %>" alt="<%= i %>">
+										<!-- <span class="card__time">an hour left</span> -->
+									</a>
+									<h3 class="card__title"><a href="/detail?id=<%= item._id %>"><%= item.Title %></a></h3>
+									<!--<div class="card__author card__author--verified">
+										<!-- <% if( typeof userData.user_DP == "undefined" ){ %>
+											<img src="assets/img/avatars/avatar5.jpg" alt="guest_DP">
+										<% } else { %>
+											<img src="<%= userData.user_DP %>" class="img-fluid" alt="user_DP" style="width: 100%; max-height: 170px;">
+										<% } %>
+										<a href="#">@ 
+											<span class="usernamefield">
+												<%= typeof userData.user_id == 'undefined' ? 'username' : userData.user_id %>
+											</span>
+										</a>  
+										 <span style="font-size: 1px; color: transparent;" id="Token_id123"><%= item.Token_ID %></span> 
+									 </div> --->
+									<div class="card__info mt-0 pt-0">
+										<div class="card__price" id="card__price-<%= i %>">
+											<% if(item.Status == "Auctioned"){ %>
+												<span>On Auction</span>
+												<span style="font-size: medium; color: white;">Min Bid: <strong> <%= item.AuctionData.minimunBid %> </strong>  &nbsp; <img src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo"> </span>
+												<span style="font-size: medium; color: white;">Max Bid: <strong> <%= item.AuctionData.maximunBid %> </strong>  &nbsp; <img src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo"> </span>
+												<span style="font-size: medium; color: white;">Ends In: <strong id="remainingTime-<%= i %>"></strong> <span id="mint-<%= i %>">MINUTES</span></span>
+												<button class="btn btn-primary" id="showAuctionResult" onclick="end_auction('<%= item.Token_ID %>')" style="display: block;"> Show Result </button>
+												<script>
+													millis('<%= item.AuctionData.auction_start %>', '<%= item.AuctionData.auction_end %>')
+													setInterval(() => {
+														millis('<%= item.AuctionData.auction_start %>', '<%= item.AuctionData.auction_end %>')
+													}, 30000);
+													function millis(startTime, endTime) {
+														remainingTimme = ( (parseInt(endTime) * 60000) + parseInt(startTime	) ) - Date.now();
+														if (remainingTimme >= 0) {
+															var minutes = Math.floor(remainingTimme / 60000);
+															// console.log(" Remaining Time: " + minutes);
+															document.getElementById("remainingTime-<%= i %>").innerText = minutes;
+														} else {
+															document.getElementById("remainingTime-<%= i %>").innerText = "Ended";
+															document.getElementById("mint-<%= i %>").innerText = "";
+															document.getElementById("showAuctionResult").style.display = "block";
+															var minutes = Math.floor(remainingTimme / 60000);
+															// console.log(" Remaining Time: " + minutes);
+
+														}
+													}
+												</script>
+											<% } else { %>
+												<span style="font-size: medium; color: white;"><%= item.Status == "Instant_buy"? "Instant buy" : item.Status %></span>
+												<span style="font-size: medium; color: white;"><%= item.Token_Price %> &nbsp; <img src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg" width="15px" alt="Eth-logo"> </span>
+											<% } %>
+										</div>
+											<% if(item.Status != "Auctioned"){ %>
+												<a href="/update-token?i=<%= item.Token_ID %>"  class="btn btn-outline-light btn-sm"> 
+													<span>  <i class="fa fa-info-circle"></i>  Update </span>
+												</a>
+											<% } %>
+									</div>
+								</div>
+								<!-- end card -->
+							</div>
+
+							<!-- <input type="text" name="" id="auctionData" >
+							<button  onclick="getAuctionData('<%= item.Token_ID %>')">auctionData</button> -->
+
+						<% }) %>	
+
+						</div>
+
+					</div>
+
+					<div class="tab-pane fade"  id="tab-2" role="tabpanel">
+						
+						<div class="row">
+							<!-- sidebar -->
+							<!-- <div class="col-12 col-xl-4 order-xl-2">
+								<div class="filter-wrap">
+									<button class="filter-wrap__btn" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">Open filter</button>
+
+									<div class="collapse filter-wrap__content" id="collapseFilter"> -->
+										<!-- filter -->
+										<!-- <div class="filter filter--sticky">
+											<h4 class="filter__title">Filters <button type="button">Clear all</button></h4>
+
+											<div class="filter__group">
+												<ul class="filter__checkboxes">
+													<li>
+														<input id="type5" type="checkbox" name="type5" checked="">
+														<label for="type5">Listings</label>
+													</li>
+													<li>
+														<input id="type6" type="checkbox" name="type6">
+														<label for="type6">Purchases</label>
+													</li>
+													<li>
+														<input id="type7" type="checkbox" name="type7" checked="">
+														<label for="type7">Sales</label>
+													</li>
+													<li>
+														<input id="type8" type="checkbox" name="type8" checked="">
+														<label for="type8">Transfers</label>
+													</li>
+													<li>
+														<input id="type9" type="checkbox" name="type9">
+														<label for="type9">Bids</label>
+													</li>
+													<li>
+														<input id="type10" type="checkbox" name="type10">
+														<label for="type10">Likes</label>
+													</li>
+													<li>
+														<input id="type11" type="checkbox" name="type11">
+														<label for="type11">Followings</label>
+													</li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- end filter -->
+									<!-- </div>
+								</div> -->
+							</div>
+							<!-- end sidebar -->
+
+							<!-- content -->
+							<div class="col-12  order-xl-1">
+								<div class="row row--grid" id="activityData">
+									<% userActivity[0].Activity.forEach( item => { %>
+										<div class="col-12 col-lg-6 col-xl-12">
+											<div class="activity p-2 mt-2">
+												<div class="activity__content  m-0">
+													<% Object.entries(item).forEach( (data) => { %>
+														
+														<% if ( data[0] == "message" ) { %>
+															<% if (data[1] == "Bid on Token Auction") { %>
+																<h3 class="activity__title m-0 "> <%= data[0].toUpperCase() %>: <%= data[1] %> </h3>
+																<button class="btn btn-primary" onclick="withdrawNow(event)"> Withdraw</button>
+															<% } else { %>
+																<h3 class="activity__title m-0 "> <%= data[0].toUpperCase() %>: <%= data[1] %> </h3>
+															<% } %>
+														<% } %>
+														 
+														<% if( data[0] != "message" && data[0] != "timestamp" ){ %>
+															<%if(data[0] == "Token_ID") { %>
+																<p class="activity__text m-0">  <%= data[0].toUpperCase() %>: <span><%= data[1] %></span> </p>
+															<% } else {%>
+																<p class="activity__text m-0">  <%= data[0].toUpperCase() %>: <%= data[1] %> </p>
+															<% } %>
+														<% } %>
+
+														<% if ( data[0] == "timestamp" ) { %>
+															<!-- <span class="activity__time"><%= data[0].toUpperCase() %>: <%= data[1] %></span> -->
+														<% } %>
+														
+													<% }) %>  
+												</div>
+											</div>
+										</div>
+									
+									<% }) %>
+
+								</div>
+
+								<!-- <div class="row row--grid">
+									<div class="col-12">
+										<button class="main__load" type="button" data-toggle="collapse" data-target="#collapsemore1" aria-expanded="false" aria-controls="collapsemore1">Load more</button>
+									</div>
+								</div> -->
+								
+								<!-- end collapse -->
+							</div>
+							<!-- end content -->
+						</div>
+						<!-- end paginator --> 
+ 
+
+					<div class="tab-pane fade" id="tab-3" role="tabpanel">
+						<div class="row row--grid">
+							<!-- details form -->
+							<div class="col-12">
+								<form action="/profile/update" method="POST" enctype="multipart/form-data" class="sign__form sign__form--profile">
+									<div class="row">
+										<div class="col-12">
+											<h4 class="sign__title">Profile details</h4>
+										</div>
+										<div class="mb-3">
+											<label for="formFile" class="form-label  text-light"> Profile Pic</label>
+											<input class="form-control" type="file" name="File" id="formFile">
+										  </div>
+										<div class="form-floating mb-3">
+											<p class="form-control" id="floatinguserwallet" style="color: #a19c9c;"><%= typeof userData.user_wallet == 'undefined' ? '' : userData.user_wallet %></p>
+											<label for="floatinguserid">Wallet Address</label>
+										</div> 
+										<div class="form-floating mb-3">
+											<input type="text" class="form-control" name="user_id" id="floatinguserid" value="<%= typeof userData.user_id == 'undefined' ? '' : userData.user_id %>" placeholder="user-id">
+											<label for="floatinguserid">User id</label>
+											<small class="text-warning" id="updateIdMsg"> Update it with your username </small>
+										</div> 
+
+										<script>
+											Wallet = document.getElementById("floatinguserwallet").innerText
+											id = document.getElementById("floatinguserid").value
+											if(Wallet != id){
+												document.getElementById("updateIdMsg").style.display = "none";
+											}else{
+												document.getElementById("updateIdMsg").style.display = "block";
+											}
+										</script>
+										<div class="col-12 col-md-6 col-lg-12 col-xl-6  mb-3">
+											<div class="form-floating">
+												<input type="text" class="form-control" value="<%= typeof userData.Facebook == 'undefined' ? '' : userData.Facebook %>" name="Facebook" id="floatingFacebook" placeholder="Facebook">
+												<label for="floatingFacebook">Facebook</label>
+											  </div>
+										</div>
+										<div class="col-12 col-md-6 col-lg-12 col-xl-6  mb-3">
+											<div class="form-floating">
+												<input type="text" class="form-control" value="<%= typeof userData.Twitter == 'undefined' ? '' : userData.Twitter %>" name="Twitter" id="floatingTwitter" placeholder="Twitter">
+												<label for="floatingTwitter">Twitter</label>
+											  </div>
+										</div>
+										<div class="col-12 col-md-6 col-lg-12 col-xl-6  mb-3">
+											<div class="form-floating">
+												<input type="text" class="form-control" value="<%= typeof userData.Telegram == 'undefined' ? '' : userData.Telegram %>" name="Telegram" id="floatingTelegram" placeholder="Telegram">
+												<label for="floatingTelegram">Telegram</label>
+											  </div>
+										</div>
+										<div class="col-12 col-md-6 col-lg-12 col-xl-6  mb-3">
+											<div class="form-floating">
+												<input type="text" class="form-control" value="<%= typeof userData.Youtube == 'undefined' ? '' : userData.Youtube %>" name="Youtube" id="floatingYoutube" placeholder="Youtube">
+												<label for="floatingYoutube">Youtube</label>
+											  </div>
+										</div>
+										<div class="col-12">
+											<button class="sign__btn" type="submit">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- end details form --> 
+						</div>
+					</div>
+				</div>
+				<!-- end content tabs -->
+			</div>
+		</div>	
+	</div>
+        
+
+
+	<%- include('_footer.ejs') %>
+	<script src="./contract/details.js"></script> 
+	<script>
+		
+		function copy() {
+			var copyText = document.querySelector("#author-code");
+			copyText.select();
+			document.execCommand("copy");
+		}
+		document.querySelector("#copy-button").addEventListener("click", copy);
+
+		document.querySelectorAll(".usernamefield").forEach(element => {
+			if(element.innerText.length > 15){
+				element.innerText = element.innerText.slice(0, 15)+"....."; 
+			}
+		});
+	</script>
+
+</body>
+</html>

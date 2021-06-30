@@ -1,0 +1,183 @@
+
+
+<%- include('_header.ejs') %>
+    
+	<div class="container px-4 py-5 mb-5 pt-3">
+		<div class="row row--grid"> 
+			<div class="col-12"> 
+				
+		<h2 class="pb-2 fs-5 headTitle mb-3">Add New NFT
+		</h2>
+				<!-- content tabs -->
+
+				<div id="AddNewItem" class="mb-5  text-light"  >
+					<div class="">
+					  <div class="col-md-12 bg-theme p-4"> 
+					  <div class="bd-content">
+						<form action="/create"  method="POST" enctype="multipart/form-data">
+
+							<%  if(typeof error != "undefined" && error) { %>
+								<div class="text-danger"><%- error %></div>
+								<% } %>
+
+						 
+							 
+
+							<div class="row row-col-md-2 row-col-1">
+									<div class="col">
+										<!-- <div class="mb-3"> 
+											<label for="txtUsername" class="form-label">NFT Name</label>
+											<input type="text" class="form-control" name="username" id="txtCreateItemName" required placeholder="Enter name" >
+										  </div> -->
+
+										  <div class="form-floating mb-3">
+											<input type="text" class="form-control" id="txtCreateItemName" placeholder="Name" name="username" required>
+											<label for="txtCreateItemName">NFT Name</label>
+										  </div>
+
+										  <div class="form-floating mb-3">
+											<input type="text" class="form-control" id="numCreateItemPrice" placeholder="Amount" name="Amount" required>
+											<label for="numCreateItemPrice">Enter Amount</label>
+										  </div>
+
+										  <div class="form-floating mb-3">
+											<select name="Categories" class="form-select" id="numCreateItemCategory" aria-label="Category" required>
+											  <option selected>Select Category</option>
+											  <option value="Sports">Sports</option>
+											  <option value="Entertainment">Entertainment</option>
+											  <option value="Lifestyle">Lifestyle</option>
+											  <option value="Art">Art</option>
+											  <option value="Collectibles">Collectibles</option>
+											  <option value="Game_Items">Game</option>
+											  <option value="Music">Music</option>
+											</select>
+											<label for="numCreateItemCategory">Select Category</label>
+										  </div>
+
+										  <div class="form-floating mb-3">
+											<select onchange="a102()" name="status" class="form-select" id="selectCreateItemStatus" aria-label="Category " required>
+											  <option selected>Select Category</option>
+											  <option value="true" selected>For Sale</option>
+											   <option value="false">Not for Sale</option>
+											   <option value="Auctioned">Auction</option>
+											</select>
+											<label for="selectCreateItemStatus">Select Category</label>
+										  </div>
+
+										  <div class="form-floating mb-3"  id="Auction_duration_Div"  style="display: none;">
+											<input type="text" class="form-control" id="numCreateItemDuration" placeholder="Enter duration" name="Auction_duration">
+											<label for="numCreateItemDuration">Enter duration in minutes</label>
+										  </div>  
+										  <div class="form-floating mb-3"  id="Auction_minBid_Div"  style="display: none;">
+											<input type="text" class="form-control" id="Auction_minBid" placeholder="Enter Minimum Bid" name="Auction_minBid">
+											<label for="Auction_minBid">Enter Minimum Bid</label>
+										  </div> 
+										  <div class="form-floating mb-3"  id="Auction_maxBid_Div"   style="display: none;">
+											<input type="text" class="form-control" id="Auction_maxBid" placeholder="Enter Maximum Bid" name="Auction_maxBid">
+											<label for="Auction_maxBid">Enter Maximum Bid</label>
+										  </div>   
+									</div>
+									
+
+									<div class="col"> 
+										<div class="form-floating mb-3">
+											<textarea name="description" class="form-control" placeholder="Enter description" id="txtCreateItemDescription" required></textarea>
+											<label for="txtCreateItemDescription">Enter description</label>
+										  </div>
+										  <div class="form-floating mb-3">
+											<textarea name="externalLink" class="form-control" placeholder="External Link" id="txtCreateItemextrnalLink"></textarea>
+											<label for="txtCreateItemextrnalLink">Enter External Link</label>
+										  </div> 
+
+										  <div class="form-group">
+											<div class="theme-input-box">
+												<div class="theme-file-upload text-center mb-3" onclick="document.getElementById('fileCreateItemThumb').click()" style=" border: 1px dashed #aaa;">
+													<div class="file-upload-ico">
+														<img src="" alt="" id="outputTHUMB" style="max-height: 190px;">
+													</div>
+													<h5 class="theme-title">Click to add your thumbnail file</h5>
+													<p class="theme-description">(Only Image support)</p> <!--items may be audio, video, image, files, ZIP, documents and many more -->
+													<input type="file" accept="image/*"  name="thumbnail" id="fileCreateItemThumb" onchange="loadThumb(event)" style="visibility:hidden;">
+												</div>
+											</div>
+										</div>
+
+											<div class="form-group">
+												<div class="theme-input-box">
+													<div class="theme-file-upload text-center mb-3" onclick="document.getElementById('fileCreateItemFile').click()" style=" border: 1px dashed #aaa;">
+														<div class="file-upload-ico">
+															<img src="" alt="" id="outputIMG" style="max-height: 190px;">
+														</div>
+														<h5 class="theme-title">Click to add your original file</h5>
+														<p class="theme-description">(Only Image support only for now)</p> <!--items may be audio, video, image, files, ZIP, documents and many more -->
+														<input type="file" accept="file_extension|audio/*|video/*|image/*"  name="File" id="fileCreateItemFile" onchange="loadFile(event)" style="visibility:hidden;">
+													</div>
+												</div>
+											</div>
+									</div>
+
+							</div> 
+						  
+						  <div class="mb-3" style="display: none;">
+							<input type="text" name="account" id="CreateItemAccount" required>
+						  </div>
+			  
+						<button type="submit" class="btn btn-success"  id="btnCreateItem" 
+						> <i class="fa fa-plus"></i>  Create NFT </button>
+						<!-- onclick="pinFileToIPFS(event)" -->
+					  </form>
+			  
+					</div>
+				  </div>
+				</div>
+				</div> 
+				 
+				<!-- end content tabs -->
+			</div>
+		</div>	
+	</div> 
+	<script> 
+		function copy() {
+			var copyText = document.querySelector("#author-code");
+			copyText.select();
+			document.execCommand("copy");
+		}
+		//document.querySelector("#copy-button").addEventListener("click", copy); 
+		document.querySelectorAll(".usernamefield").forEach(element => {
+			if(element.innerText.length > 15){
+				element.innerText = element.innerText.slice(0, 15)+"....."; 
+			}
+		}); 
+		function as100() {
+			Maximum_Bid_2 = document.getElementById("Maximum_Bid_2").value;
+			Minimum_Bid_2 = document.getElementById("Minimum_Bid_2").value;
+
+			if(Maximum_Bid_2 > Minimum_Bid_2){
+				document.querySelector(".sign__btn").disabled = false;
+			} else{
+				alert("Minimum bid can not be higher than maximmum bid.")
+				document.querySelector(".sign__btn").disabled = true;
+			}
+		}
+		function a102() { 
+				a67 = document.getElementById("selectCreateItemStatus").value
+				if(a67 == "Auctioned"){
+				document.getElementById("Auction_duration_Div").style.display = "block"
+				document.getElementById("Auction_maxBid_Div").style.display = "block"
+				document.getElementById("Auction_minBid_Div").style.display = "block"
+				} else {
+				document.getElementById("Auction_duration_Div").style.display = "none"
+				document.getElementById("Auction_maxBid_Div").style.display = "none"
+				document.getElementById("Auction_minBid_Div").style.display = "none"
+				}
+			}
+	</script> 
+
+<%- include('_footer.ejs') %>
+
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/contract/createNFT.js"></script> 
+</body> 
+</html>
+	 

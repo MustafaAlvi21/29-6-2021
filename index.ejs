@@ -1,0 +1,226 @@
+
+
+<%- include('_header.ejs') %> 
+
+      <div class="container mb-5">
+
+        <div class="row" id="AllItemsList">
+          <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+            <h1 class=" fs-5 mb-0 headTitle mt-3">
+					Filter
+				</h1>
+             <div class="browse-product-filter text-light border-outline-stax">
+               
+              <div class="filter-box">
+                <h5 class="theme-title">Sort by</h5>
+                <div class="filter-menu"> 
+
+                   <ul>
+                      <li>
+
+                         <input class="styled-checkbox styled123" onchange="filter()" id="most_view" type="checkbox" value="viewed, -1" >
+                         <label for="most_view"><span>Most viewed</span></label>
+                      </li>
+                      <li>
+                         <input class="styled-checkbox styled123" onchange="filter()" id="recent_first" type="checkbox" value="timestamp, -1" >
+                         <label for="recent_first"><span>Newest</span></label>
+                      </li>
+                      <li>
+                         <input class="styled-checkbox styled123" onchange="filter()" id="old_first" type="checkbox" value="timestamp, 1">
+                         <label for="old_first"><span>Oldest</span></label>
+                      </li>
+                      <li>
+                         <input class="styled-checkbox styled123" onchange="filter()" id="price_low_first" type="checkbox" value="Token_Price, 1">
+                         <label for="price_low_first"><span>Price - Low to high</span></label>
+                      </li>
+                      <li>
+                         <input class="styled-checkbox styled123" onchange="filter()" id="price_height_first" type="checkbox" value="Token_Price, -1">
+                         <label for="price_height_first"><span>Price - High to low</span></label>
+                      </li>
+                      <li>
+                         <input class="styled-checkbox styled123" onchange="filter()" id="auction_only" type="checkbox" value="Auctions_only, Auctioned">
+                         <label for="auction_only"><span>Auctions only</span></label>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+                <div class="filter-box">
+                   <h5 class="theme-title">Categories</h5>
+                   <div class="filter-menu">
+                      <ul>
+                        <li>
+                           <input class="styled-checkbox" id="styled-checkbox-8" onchange="filter()" type="checkbox" value="Sports">
+                           <label for="styled-checkbox-8"><span>Sports</span></label>
+                        </li>
+                        <li>
+                           <input class="styled-checkbox" id="styled-checkbox-9" onchange="filter()" type="checkbox" value="Entertainment">
+                           <label for="styled-checkbox-9"><span>Entertainment</span></label>
+                        </li>
+                        <li>
+                           <input class="styled-checkbox" id="styled-checkbox-10" onchange="filter()" type="checkbox" value="Lifestyle">
+                           <label for="styled-checkbox-10"><span>Lifestyle</span></label>
+                        </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-1" onchange="filter()" type="checkbox" value="Art">
+                            <label for="styled-checkbox-1"><span>Art</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-2" onchange="filter()" type="checkbox" value="Collectibles">
+                            <label for="styled-checkbox-2"><span>Collectibles</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-3" onchange="filter()" type="checkbox" value="Game_Items">
+                            <label for="styled-checkbox-3"><span>Game</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-4" onchange="filter()" type="checkbox" value="Music">
+                            <label for="styled-checkbox-4"><span>Music</span></label>
+                         </li>  
+                      </ul>
+                   </div>
+                </div>
+                <!-- <div class="filter-box">
+                   <h5 class="theme-title">Other options <span class="text-danger">Not working</span> </h5>
+                   <div class="filter-menu">
+                      <ul>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-8" type="checkbox" value="value1">
+                            <label for="styled-checkbox-8"><span>Copyright transfer</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-9" type="checkbox" value="value1">
+                            <label for="styled-checkbox-9"><span>Resellable</span></label>
+                         </li>
+                      </ul>
+                   </div>
+                </div> -->
+                <!-- <div class="filter-box">
+                   <h5 class="theme-title">Price <span class="text-danger">Not working</span> </h5>
+                   <div class="filter-menu">
+                      <ul>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-15" type="checkbox" value="value1">
+                            <label for="styled-checkbox-15"><span>$1 - $5.99</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-16" type="checkbox" value="value1">
+                            <label for="styled-checkbox-16"><span>$6 - $14.99</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-17" type="checkbox" value="value1">
+                            <label for="styled-checkbox-17"><span>$15 - $29.99</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-18" type="checkbox" value="value1">
+                            <label for="styled-checkbox-18"><span>$30 - $74.99</span></label>
+                         </li>
+                         <li>
+                            <input class="styled-checkbox" id="styled-checkbox-19" type="checkbox" value="value1">
+                            <label for="styled-checkbox-19"><span>$75 - $100+</span></label>
+                         </li>
+                      </ul>
+                   </div>
+                </div> -->
+             </div>
+          </div>
+          <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 pt-4">
+            <!-- <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+              <ol class="breadcrumb text-light">
+                <li class="breadcrumb-item">Home</li> 
+                <li class="breadcrumb-item">></li> 
+                <li class="breadcrumb-item active" aria-current="page">All</li>
+              </ol>
+            </nav> -->
+                  
+            <% if (error.length > 0 ) { %>
+              <div class="row" id="hide_alert">
+                <div class="alert alert-danger" role="alert">
+                  <center>
+                    <strong> <%= error %> </strong>   
+                  </center> 
+                </div>
+              </div>
+              <script>
+                setTimeout(() => {
+                  document.getElementById("hide_alert").style.display = "none";
+                }, 4000);
+              </script>          
+            <% } %>
+
+            <div class="row" id="error_alert" style="display: none;">
+              <div class="alert alert-danger" role="alert">
+                <center>
+                  <strong id="error_alert_msg">  </strong>   
+                </center> 
+              </div>
+            </div>
+
+            <!-- This is the section where all the NFT placed/show -->
+            <div id="itemsForSale" class="row mb-5"></div>
+            </div>
+        </div>
+
+    <!-- <div id="marketplaceItemTemplate" class="col mb-4">
+        <div class="card h-100 bg-transparent text-light">
+            <nav class="card-header navbar navbar-dark text-light p-1 d-none">
+                <img src="" alt="" style="max-height:30px;max-width: 30px;" class="rounded-pill d-none">
+                <span class="d-none"></span>
+              </nav>
+              <div class="market-item-img">
+                <img src="" class="card-img-top" alt="">
+            </div>
+            <div class="card-body d-flex align-items-end">
+                <div class="w-100">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text d-none"></p>
+                    <button class="btn btn-primary w-100"></button>
+                </div>
+            </div>
+          </div>
+    </div> -->
+ 
+
+    <!-- <div id="userProfileArea" class=" mb-5  text-light" style="display: none;">
+      <div class="row">
+        <div class="col-md-6 bg-theme p-4"> 
+          <div class="bd-content">
+            <h3>User Profile </h3> 
+            </div>
+              <div class="mb-3">
+                <label for="txtUsername" class="form-label">username</label>
+                <input type="text" class="form-control" name="username" id="txtUsername" aria-describedby="emailHelp">
+              </div> 
+              <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Optional</div>
+              </div>
+            <img width="50" height="50" src="" id="imgAvatar" alt="">
+            <div class="form-group">
+                <label for="fileAvatar">Select Avatar</label>
+                <input type="file" id="fileAvatar" class="form-control">
+            </div>
+            <div class="mt-3">  
+              <button type="button" class="btn btn-primary"  id="btnSaveUserInfo">Save</button>
+            </div>
+        </div>
+      </div>
+    </div>  -->
+
+     
+
+<% if (typeof path != "undefined"){ %>
+  <div style="background-color: #1e1d32;">
+    <input type="text" id="path" value="<%= path %>" style="display: none;">
+  </div>
+<% } %>
+
+
+
+
+</div>
+ 
+    <%- include('_footer.ejs') %>
+    <script src="/contract/app.js"></script> 
+  </body> 
+</html>
