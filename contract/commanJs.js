@@ -7,10 +7,8 @@ var account = "";
 alert("commonJs")
 if (document.location.origin === 'http://localhost:7654') {
     var URL = "http://localhost:7654/";
-} else if(document.location.origin === 'https://musto-marketplace.herokuapp.com/') {
-    var URL = "https://musto-marketplace.herokuapp.com/";
 } else {
-    var URL = "https://colexion.io/";
+    var URL = "https://musto-marketplace.herokuapp.com/";
 }
 
 alert(URL)
