@@ -1,4 +1,4 @@
-var address = "0x8Db8634aE77CC1eac5E66bcc2f346B9BFB747E08";
+var address = "0xc61d199f1c857c472705ffff3c9bd06d63845667";
 
 $(document).ready(async function () {
   abi = await fetch('/build/abi network/Nft.json')
@@ -245,9 +245,6 @@ async function filter(page) {
   const checkbox2 = document.getElementById("styled-checkbox-2");
   const checkbox3 = document.getElementById("styled-checkbox-3");
   const checkbox4 = document.getElementById("styled-checkbox-4");
-  // const checkbox5 = document.getElementById("styled-checkbox-5");
-  // const checkbox6 = document.getElementById("styled-checkbox-6");
-  // const checkbox7 = document.getElementById("styled-checkbox-7");
   const checkbox8 = document.getElementById("styled-checkbox-8");
   const checkbox9 = document.getElementById("styled-checkbox-9");
   const checkbox10 = document.getElementById("styled-checkbox-10");

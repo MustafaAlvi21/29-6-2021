@@ -29,7 +29,8 @@ async function loadBlockchainData() {
   if (networkId == 3) {
     // const abi = Nft.abi
     // const address = networkData.address
-    contract = await new web3.eth.Contract(abi, address)
+    contract = await new web3.eth.Contract(abi, address);
+    console.log(contract);
   } else {
     toastr.error('Please switch to Ropsten Network.');
     return false
@@ -68,7 +69,7 @@ async function Token_Purchase(id, price) {
     if (account == await getSessionUser()) {
 
       var loading = new Loading({ loadingBgColor: 'rgb(77, 150, 223)', discription: "Waiting for transaction confirmation, please don't close window it will take 5-10 minutes." });
-      await contract.methods.purchaseToken(parseInt(TokenID_Purchase)).send({ from: account, value: parseInt(price) })
+      await contract.methods.purchaseToken(parseInt(TokenID_Purchase), 33,33,33).send({ from: account, value: parseInt(price) })
         .then(async (result) => {
           priceInEther = parseInt(price) / 1000000000000000000;
           await fetch(`${URL}home/purchaseToken/${TokenID_Purchase}/${account}/${priceInEther}`)

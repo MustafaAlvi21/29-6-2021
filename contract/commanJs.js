@@ -1,17 +1,17 @@
 var abi = []
-var address = "0x8Db8634aE77CC1eac5E66bcc2f346B9BFB747E08"; // contract adddress
+var address = "0xc61d199f1c857c472705ffff3c9bd06d63845667"; // contract adddress
 var fs = [];
 var contract = [];
 var web3 = [];
 var account = "";
-alert("commonJs")
+// alert("commonJs")
 if (document.location.origin === 'http://localhost:7654') {
     var URL = "http://localhost:7654/";
 } else {
     var URL = "https://musto-marketplace.herokuapp.com/";
 }
 
-alert(URL)
+// alert(URL)
 
 $(document).ready(async function () {
     abi = await fetch('/build/abi network/Nft.json')
@@ -111,42 +111,3 @@ function isFileImage(file) {
     const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
     return file && acceptedImageTypes.includes(file['type'])
 }
-
-
-// // get searched Items and show in modal
-// async function searchData() {
-//     searchQuery = document.getElementById("itemsForSale").value;
-//     var loading = new Loading({ loadingBgColor: 'rgb(77, 150, 223)', discription: 'Loading...' });
-//     await fetch(`${URL}home/search?name=${searchQuery}`)
-//         .then(response => response.json())
-//         .then((result) => {
-//             //console.log(result); 
-//             document.getElementById("dataOfSearch").innerHTML = "";
-//             result.data.forEach((item, i) => {
-//                 console.log(item);
-//                 let Token_Price = parseFloat(item.Token_Price);
-//                 let _status = item.Status == "Instant_buy" ? "Instant buy" : item.Status;
-//                 document.getElementById("dataOfSearch").innerHTML += `
-//                     <div class="col-4 mb-3"> 
-//                         <div class="card"> 
-//                             <a href="/detail?id=${item._id}" class="d-flex">
-//                             <div class="card-body text-center  text-light"> 
-//                             <img src="https://ipfs.infura.io/ipfs/${item.URL}" class="watermark nft-img card-img-top" alt="img-${i}">
-//                             <div class="nft-detail-bottom position-absolute bottom-0 end-0 w-100 p-3 nft-ct-border">
-//                                 <h6 class="card-text text-start fw-light text-capitalize fst-italic"> ${item.Title} </h6>
-//                                 <div class="row">
-//                                 <div class="col fw-bold text-start"> <img src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg" class="nft-icon" alt="Eth-logo">  &nbsp;  ${Token_Price}
-//                                 </div>
-//                                 <div class="col col fw-light text-capitalize"> ${_status}  </div>
-//                                 </div>   
-//                                 </div> 
-//                             </div></a> 
-//                         </div></div> `;
-//             });
-//             loading.out(); 
-//         }).catch((err) => {
-//             loading.out();
-//             console.log(err);
-//         });
-//     return false;
-// }
